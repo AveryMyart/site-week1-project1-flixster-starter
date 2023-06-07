@@ -1,4 +1,4 @@
-let fakeMovieData = {
+let fakeMovieAPI = {
     "dates": {
         "maximum": "2023-06-05",
         "minimum": "2023-04-18"
