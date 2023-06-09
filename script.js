@@ -110,3 +110,8 @@ function generateCards(movieObject) {
 }
 
 generateCards(firstMovie);
+
+for (movie in fakeMovieAPI.results){
+    
+    generateCards(fakeMovieAPI.results[movie]);
+};
