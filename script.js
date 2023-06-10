@@ -20,8 +20,9 @@ function getMovies(url){
 }
 
 function generateCards(movieObject) {
-    let movieGrid = document.getElementById('card-container');
+    let movieGrid = document.getElementById('movies-grid');
     let movieCard = document.createElement('div');
+    movieCard.classList.add('movie-card');
     movieGrid.appendChild(movieCard);
 
     // create star
@@ -39,18 +40,19 @@ function generateCards(movieObject) {
     // create image
     let image  = document.createElement("img");
     image.src = "https://image.tmdb.org/t/p/w342" + movieObject.poster_path
+    image.classList.add('movie-poster')
     movieCard.appendChild(image);
 
     // create average container
     let averageContainer = document.createElement("div");
-    averageContainer.classList.add("average");
+    averageContainer.classList.add("movie-votes");
     averageContainer.appendChild(star);
     averageContainer.appendChild(rating);
     movieCard.appendChild(averageContainer);
 
     // create card and 
     let name = document.createElement('div');
-    name.classList.add("name");
+    name.classList.add('movie-title');
     name.innerText = movieObject.original_title;
     movieCard.appendChild(name);
 }
