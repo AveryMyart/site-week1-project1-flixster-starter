@@ -6,6 +6,15 @@ body {
 h1 {
     text-align: center;
 }
-div {
+/* div {
     display: flexbox;
+} */
+
+#card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-left: 10%;
+
 }

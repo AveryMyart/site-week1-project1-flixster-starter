@@ -1,3 +1,7 @@
+const apiKey = 'bc4ebe4e41d0e0447f7e7f61341f5914';
+
+let url = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1'
+
 let fakeMovieAPI = {
     "dates": {
         "maximum": "2023-06-05",
@@ -73,11 +77,38 @@ let fakeMovieAPI = {
     "total_results": 1951
 }
 
+const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiYzRlYmU0ZTQxZDBlMDQ0N2Y3ZTdmNjEzNDFmNTkxNCIsInN1YiI6IjY0MGZmMDk0YzM5MGM1MDA3ZjE3N2FlNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.suug_jaTghAGjuUp8MrUqPhYCsOIxu2XWzBzfEh02HA'
+    }
+  };
+  
+let apiData = {
+    data:getMovies(url),
+}
+
+function getMovies(url){
+    fetch(url, options)
+    .then(response => response.json())
+    .then(response => {
+        for(movie in response.results){
+            generateCards(response.results[movie])
+        }
+    })
+}
+
+
 let firstMovie = fakeMovieAPI.results[0]
 
-console.log(firstMovie)
+getMovies(url);
+
 
 function generateCards(movieObject) {
+    let movieGrid = document.getElementById('card-container');
+    let movieCard = document.createElement('div');
+    movieGrid.appendChild(movieCard);
 
     // create star
     let star = document.createElement("span");
@@ -90,28 +121,40 @@ function generateCards(movieObject) {
     let ratingContent = document.createTextNode(movieObject.vote_average);
     rating.classList.add("rating");
     rating.appendChild(ratingContent);
+    
+    let image  = document.createElement("img");
+    image.src = "https://image.tmdb.org/t/p/w342" + movieObject.poster_path
+    // document.body.insertBefore(image, averageContainer)
+    movieCard.appendChild(image);
 
     // create average container
     let averageContainer = document.createElement("div");
     averageContainer.classList.add("average");
     averageContainer.appendChild(star);
     averageContainer.appendChild(rating);
-    document.body.appendChild(averageContainer);
+    // document.body.appendChild(averageContainer);
+    movieCard.appendChild(averageContainer);
 
-    let image  = document.createElement("img");
-    image.src = "https://image.tmdb.org/t/p/w342" + movieObject.poster_path
-    document.body.insertBefore(image, averageContainer)
 
     let name = document.createElement('div');
     name.classList.add("name");
     name.innerText = movieObject.original_title;
-    document.body.insertBefore(name, averageContainer.nextSibling);
+    // document.body.insertBefore(name, averageContainer.nextSibling);
+    movieCard.appendChild(name);
 
 }
 
-generateCards(firstMovie);
+getMovies(url);
 
-for (movie in fakeMovieAPI.results){
-    
-    generateCards(fakeMovieAPI.results[movie]);
-};
+
+// for (movie in apiData.data.results){
+//     generateCards(apiData.data.results[movie]);
+// };
+
+// fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', options)
+// .then(response => response.json())
+// .then(response => {
+//     for(let i = 0; i<response.results.length; i++){
+//         generateCards(response.results)
+//     }
+// })
