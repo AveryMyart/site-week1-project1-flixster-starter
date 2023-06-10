@@ -6,6 +6,7 @@ body {
 h1 {
     text-align: center;
 }
+
 /* div {
     display: flexbox;
 } */
@@ -16,5 +17,8 @@ h1 {
     flex-wrap: wrap;
     justify-content: flex-start;
     margin-left: 10%;
+}
 
+#loadMoviesBttn {
+    
 }
