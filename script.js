@@ -69,7 +69,7 @@ function generateCards(movieObject) {
 // let loadMoreBttn = document.getElementById('loadMoviesBttn');
 // let  searchBttn = document.getElementById('searchBttn');
 
-searchBttn.addEventListener('click', console.log("hello"));
+searchBttn.addEventListener('click', searchMovies);
 let userSearchInput = document.getElementById('userSearchQuery').value;
 console.log('this is the value of the search' + userSearchInput);
 function loadMoreMovies(){
@@ -79,7 +79,8 @@ function loadMoreMovies(){
 }
 
 function clearMovies(){
-    document.getElementById('movies-grid').innerHTML("");
+    document.getElementById('movies-grid').innerHTML = "";
+    event.preventDefault();
 }
 
 function searchMovies(){
@@ -89,6 +90,7 @@ function searchMovies(){
     // query = userSearchInput;
     // searchURL = 'https://api.themoviedb.org/3/search/movie?query=' + query + '&api_key=bc4ebe4e41d0e0447f7e7f61341f5914&page=' + page;
     getMovies(fakeURL);
+    event.preventDefault();
 }
 
 
@@ -98,4 +100,3 @@ function searchMovies(){
 loadMoreBttn.addEventListener('click', loadMoreMovies);
 
 getMovies(nowPlayingURL);
-searchMovies();
