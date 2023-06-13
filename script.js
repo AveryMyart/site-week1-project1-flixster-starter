@@ -2,7 +2,6 @@ const apiKey = 'bc4ebe4e41d0e0447f7e7f61341f5914';
 const nowPlayingURL = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1'
 const clearMoviesURL = ""
 const queryURL = 'https://api.themoviedb.org/3/search/movie?query=&api_key=bc4ebe4e41d0e0447f7e7f61341f5914'
-const fakeURL = 'https://api.themoviedb.org/3/search/movie?query=spider&api_key=bc4ebe4e41d0e0447f7e7f61341f5914&page=2'
 let query = ""
 let page = 1;
 
@@ -69,11 +68,15 @@ function generateCards(movieObject) {
 // let loadMoreBttn = document.getElementById('loadMoviesBttn');
 // let  searchBttn = document.getElementById('searchBttn');
 
-searchBttn.addEventListener('click', searchMovies);
-console.log('this is the value of the search' + userSearchInput);
 function loadMoreMovies(){
     page+=1;
-    getMovies('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=' + (page));
+    if (query.length < 1 ){
+        getMovies('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=' + (page));
+        
+    } else{
+        getMovies('https://api.themoviedb.org/3/search/movie?query=' + query + '&api_key=bc4ebe4e41d0e0447f7e7f61341f5914&page=' + page)
+
+    }
     
 }
 
@@ -89,11 +92,11 @@ function searchMovies(){
     query = userSearchInput;
     searchURL = 'https://api.themoviedb.org/3/search/movie?query=' + query + '&api_key=bc4ebe4e41d0e0447f7e7f61341f5914&page=' + page;
     getMovies(searchURL);
+    page+=1;
     event.preventDefault();
 }
 
-
-
+searchBttn.addEventListener('click', searchMovies);
 
 // loading website
 loadMoreBttn.addEventListener('click', loadMoreMovies);
