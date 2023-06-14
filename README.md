@@ -2,9 +2,7 @@
 
 Submitted by: **Avery Myart**
 
-Estimated time spent: **10** hours spent in total
-
-Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
+Estimated time spent: **16** hours spent in total
 
 ### Application Features
 
@@ -51,7 +49,7 @@ I felt prepared to get and set html atrributes in JavaScript. i also felt comfor
 
 - If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
-I would have refactored my code to make the functions more modular with more clear and concise scope.
+I would have refactored my code to make the functions more modular with more clear and concise scope. I would have also dynamically rendered the movies as the user typed into the search bar
 
 - Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
