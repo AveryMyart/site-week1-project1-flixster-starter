@@ -19,6 +19,14 @@ h1 {
     margin-left: 10%;
 }
 
+.button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+}
+
 /* #loadMoviesBttn {
 
 } */

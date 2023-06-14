@@ -81,6 +81,9 @@ function clearMovies(){
 }
 
 function searchMovies(){
+    if (query.length > 1){
+        reset();
+    }else{
     clearMovies();
     let userSearchInput = document.getElementById('userSearchQuery').value;
     query = userSearchInput;
@@ -88,6 +91,13 @@ function searchMovies(){
     getMovies(searchURL);
     page+=1;
     event.preventDefault();
+    }
+}
+
+function reset(){
+    clearMovies();
+    getMovies(nowPlayingURL);
+    page = 1;
 }
 
 // function reloadNowPlaying(){
@@ -116,3 +126,8 @@ loadMoreBttn.addEventListener('click', loadMoreMovies);
 // }
 
 getMovies(nowPlayingURL);
+
+if (query.trim.length < 1){
+    clearMovies();
+    getMovies(nowPlayingURL);
+}
