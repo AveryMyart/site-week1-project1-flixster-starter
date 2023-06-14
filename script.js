@@ -65,29 +65,23 @@ function generateCards(movieObject) {
     movieCard.appendChild(name);
 }
 
-// let loadMoreBttn = document.getElementById('loadMoviesBttn');
-// let  searchBttn = document.getElementById('searchBttn');
-
 function loadMoreMovies(){
     page+=1;
-    if (query.length < 1 ){
-        getMovies('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=' + (page));
-        
+    if (query.trim.length < 1 ){
+        getMovies('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=' + page);
     } else{
         getMovies('https://api.themoviedb.org/3/search/movie?query=' + query + '&api_key=bc4ebe4e41d0e0447f7e7f61341f5914&page=' + page)
-
     }
-    
 }
 
 function clearMovies(){
     document.getElementById('movies-grid').innerHTML = "";
+    page = 1;
     event.preventDefault();
 }
 
 function searchMovies(){
     clearMovies();
-    page = 1;
     let userSearchInput = document.getElementById('userSearchQuery').value;
     query = userSearchInput;
     searchURL = 'https://api.themoviedb.org/3/search/movie?query=' + query + '&api_key=bc4ebe4e41d0e0447f7e7f61341f5914&page=' + page;
@@ -96,9 +90,29 @@ function searchMovies(){
     event.preventDefault();
 }
 
-searchBttn.addEventListener('click', searchMovies);
+// function reloadNowPlaying(){
+//     clearMovies();
+//     getMovies(nowPlayingURL);
+//     document.removeChild(closeBttn);
+//     event.preventDefault();
+// }
+
 
 // loading website
+searchBttn.addEventListener('click', searchMovies);
 loadMoreBttn.addEventListener('click', loadMoreMovies);
+
+// clear button
+// if (query.trim.length > 0){
+//     if (document?.getElementsByClassName('closeBttn')){
+//         reloadNowPlaying();
+//     } else{
+//         let closeBttn = document.createElement('button');
+//         closeBttn.id = 'closeBttn';
+//         let searchForm = document.getElementById('search-form');
+//         searchForm.appendChild(closeBttn);
+//         closeBttn.addEventListener('click', reloadNowPlaying);
+//     }
+// }
 
 getMovies(nowPlayingURL);
